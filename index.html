@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exalted</title>
+    <style>
+        /* Basic reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body style */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ccc;
+            color: #333;
+            padding: 20px;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        /* Heading styles */
+        h1 {
+            color: #4a90e2;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #333;
+            margin-top: 20px;
+        }
+
+        /* Main container style */
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Top buttons */
+        .top-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .top-buttons img {
+            width: 120px;
+            height: 120px;
+            cursor: pointer;
+            transition: transform 0.2s, border 0.2s;
+            border: 4px solid transparent;
+            border-radius: 10px;
+        }
+
+        .top-buttons img.selected {
+            border-color: #4a90e2;
+            transform: scale(1.1);
+        }
+
+        .top-buttons img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Difficulty selectors */
+        .difficulty-selectors {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .difficulty-button {
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: #fff;
+            font-size: 18px;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .difficulty-button.selected {
+            background: linear-gradient(135deg, #ff416c, #ff4b2b);
+            transform: scale(1.1);
+        }
+
+        .difficulty-button:hover {
+            background: linear-gradient(135deg, #5a0fb5, #1a6aec);
+            transform: scale(1.05);
+        }
+
+        /* Play button */
+        .play-button {
+            background-color: #4a90e2;
+            color: #fff;
+            font-size: 24px;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-bottom: 20px;
+        }
+
+        .play-button:hover {
+            background-color: #357ab7;
+        }
+
+        /* Image */
+        .image-container {
+            margin: 20px 0;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        /* Documentation columns */
+        .columns {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .column {
+            background-color: #ffdd57;
+            padding: 20px;
+            border-radius: 5px;
+            flex: 1;
+            text-align: left;
+        }
+
+        /* Footer style */
+        footer {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #777;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Exalted</h1>
+
+    <div class="container">
+        <!-- Top button images -->
+        <div class="top-buttons">
+            <img src="arena1.png" alt="Arena 1" class="arena-button" data-arena="arena1">
+            <img src="arena2.png" alt="Arena 2" class="arena-button" data-arena="arena2">
+            <img src="arena3.png" alt="Arena 3" class="arena-button" data-arena="arena3">
+        </div>
+
+        <!-- Difficulty selectors -->
+        <div class="difficulty-selectors">
+            <button class="difficulty-button" data-difficulty="easy">Easy</button>
+            <button class="difficulty-button" data-difficulty="hard">Hard</button>
+        </div>
+
+        <!-- Play button -->
+        <button class="play-button" onclick="goToGame();">Play</button>
+        
+
+        <!-- Image below play button -->
+        <div class="image-container">
+            <img src="gameimage.png" alt="Game Image">
+        </div>
+
+        <!-- Documentation columns -->
+        <div class="columns">
+            <div class="column">
+                <h2>General Info</h2>
+                <p>WASD To Move <br> Left Click To Shoot <br> Q and E to rotate the screen <br> Note: Avoid screenrotating if you get motion sick easily<br> Z to reset screen rotation <br> I to turn on AutoFire<br>
+                <br> This game is meant to be difficult even on easy mode, However you can still experience every phase because they are all randomized except celestial<br>                <p>Currently Oryx (The Boss) has 9 phases and 2 environmental changes, At the start of the fight Oryx will be idle for 5 seconds. Oryx will taunt you to signal the start of a new Phase<br>
+                    Phases are chosen randomly with the exception of one phase and all last 20 seconds. When Oryx reaches 60% Health he will begin throwing heavenly beams from the sky on to the arena randomly.<br>
+                    At 50% Health Oryx will end any ongoing phase early and begin a Phase called celestial (more details below). This is a very difficult phase and backing off is recommeneded. <br>
+                    At 40% Health Beams will traverse the arena in any of the four directions, you will need to be able to time it right and walk through the beams a frame after they have hit, but not too late because<br>
+                    the next set of beams will come.
+                    <br>The fight only ends
+                    when either oryx dies or you die. Easy Mode starts you of with 1200 HP and double the health regen speed; you also deal 300 damage per bullet and Oryx will have 100,000 HP. <br>
+                    While Hard Mode gives you 900 HP and you deal 200 damage per bullet and Oryx has 220,000 HP. You also take 70 more damage for every bullet in Hard Mode. You can select a map to use above -However <br>
+                    I recommend you use arena 1 as its easier on the eyes and the game was built on it (the others work fine though).
+            </p>
+            </div>
+            <div class="column">
+                <h2>Phases Info</h2>
+                    None of these Phases are in order, Phase selection is random except Celestial<br>
+                    Phase 1: Armor Crumples<br>
+                    Oryx Chases you around shotguning from the front and spare bullets from the sides<br>
+                    Phase 2: Shield Bashes<br>
+                    Oryx will linearly chase you shooting shots to the side and leaving bullets behind him<br>
+                    Phase 3: Melts<br>
+                    Oryx will run towards your current location and shoot all around him 3 times before chasing you again<br>
+                    Phase 4: Panic and Scream<br>
+                    Oryx will path towards you then stop and throw bombs in 90 degree angles and then 45 degree angles repeating this 3 times then chasing you again<br>
+                    Phase 5: Cowardice<br>
+                    Oryx will spin in place shooting a heavy barrage of shots all around him <br>
+                    Phase 6: Inner Rotates<br>
+                    Oryx will spin around the inner circle of the arena and shoot a heavy barrage all around him<br>
+                    Phase 7: Outer Rotates<br>
+                    Oryx will spin around the outer circle of the arena and shoot towards the middle of the arena<br>
+                    Phase 8: Fleeing<br>
+                    Oryx will chase you while spinning unpredictably shooting shots all around him<br>
+                    Phase 9: Cosmos<br>
+                    Oryx will kneel down and spawn meteors that explode on impact with the ground splitting into 6 bullets<br>
+                    Phase 10: Celestial<br>
+                    8 portals will spawn on the edges of the room and shoot in a spiral pattern towards the middle with gaps while
+                    Oryx spins around the center shooting randomly all around him. Celestial can only happen once.
+
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        function goToGame() {
+    window.location.href = 'game/index.html'; // button to main game
+}
+        // change arena
+        const arenaButtons = document.querySelectorAll('.arena-button');
+        arenaButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                arenaButtons.forEach(btn => btn.classList.remove('selected'));
+                button.classList.add('selected');
+                localStorage.setItem('selectedArena', button.getAttribute('data-arena'));
+            });
+        });
+
+        // change difficulty 
+        const difficultyButtons = document.querySelectorAll('.difficulty-button');
+        difficultyButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                difficultyButtons.forEach(btn => btn.classList.remove('selected'));
+                button.classList.add('selected');
+                localStorage.setItem('selectedDifficulty', button.getAttribute('data-difficulty'));
+            });
+        });
+
+        // load options from localstorage
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedArena = localStorage.getItem('selectedArena');
+            const savedDifficulty = localStorage.getItem('selectedDifficulty');
+
+            if (savedArena) {
+                document.querySelector(`.arena-button[data-arena="${savedArena}"]`).classList.add('selected');
+            }
+
+            if (savedDifficulty) {
+                document.querySelector(`.difficulty-button[data-difficulty="${savedDifficulty}"]`).classList.add('selected');
+            }
+        });
+    </script>
+</body>
+</html>

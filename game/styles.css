@@ -1,0 +1,15 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #ccc; /* Grey background */
+    display: flex;
+    justify-content: center; /* Center the canvas horizontally */
+    align-items: center;     /* Center the canvas vertically */
+    height: 100vh;           /* Full viewport height */
+}
+
+#canvas-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

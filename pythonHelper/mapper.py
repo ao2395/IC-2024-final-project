@@ -60,7 +60,7 @@ def save_pixel_array_to_json(image_path, pixel_array):
 
 # Example usage
 if __name__ == "__main__":
-    image_path = "arena1.jpeg"  # Replace with your image name
+    image_path = "arena3.png"  # Replace with your image name
     pixel_array, dimensions = image_to_pixel_array(image_path)
     save_pixel_array_to_json(image_path, pixel_array)
     print(f"Image dimensions after resizing: {dimensions}")
